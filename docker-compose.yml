@@ -4,6 +4,7 @@ services:
   digestif:
     image: digestif
     build: .
+    pull_policy: build
     deploy:
       mode: replicated
       replicas: 1
