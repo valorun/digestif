@@ -1,0 +1,23 @@
+[project]
+authors = ["valorun <ronan@collier-famille.fr>"]
+channels = ["conda-forge"]
+description = "Add a short description here"
+name = "digestif"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[dependencies]
+python = "==3.12"
+
+[pypi-dependencies]
+schedule = "*"
+openai = "*"
+feedparser = "*"
+pyyaml = "*"
+requests = "*"
+
+[tasks]
+start = "python digestif.py"
+
+[activation]
+scripts = ["activate.sh"]
