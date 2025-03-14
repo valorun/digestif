@@ -3,8 +3,6 @@ name: digestif
 services:
   api:
     image: digestif
-    env_file:
-      - default.env
     build: .
     deploy:
       mode: replicated
@@ -14,4 +12,6 @@ services:
         failure_action: rollback
         delay: 5s
     volumes:
-      - /root/images:/feeds
+      - ${FEEDS_PATH:-./feeds}:/feeds
+      - ${OUTPUT_PATH:-./outputs}:/outputs
+

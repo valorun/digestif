@@ -9,7 +9,7 @@ Once your feeds are configured, a markdown digest will be generated every day at
 
 ## Getting started
 
-The easiest way is to run the project with docker compose. You first need to set you `OPENAI_API_KEY` in `default.env` file. 
+The easiest way is to run the project with docker compose. You first need to set you `OPENAI_API_KEY` in your path. 
 Then, simply run the following command:
 ```bash
 docker compose up -d

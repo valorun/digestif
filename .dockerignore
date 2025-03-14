@@ -1,0 +1,10 @@
+*.whl
+*.pyc
+*.sqlite3
+*.db
+*.ini
+
+.env
+.pixi/
+
+feeds/
