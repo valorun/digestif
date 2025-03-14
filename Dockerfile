@@ -1,8 +1,13 @@
-FROM ghcr.io/prefix-dev/pixi:0.39.3-bullseye
-RUN apt-get update && apt-get upgrade -y && apt-get install -y git
+FROM python:3
+
 RUN mkdir -p /feeds
 RUN mkdir -p /outputs
 RUN mkdir -p /opt/app
 WORKDIR /opt/app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
 COPY . .
-CMD ["/usr/local/bin/pixi", "run", "start"]
+
+CMD [ "python", "digestif.py" ]

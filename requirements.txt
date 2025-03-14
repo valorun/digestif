@@ -1,0 +1,5 @@
+schedule
+openai
+feedparser
+pyyaml
+requests
