@@ -1,7 +1,7 @@
 name: digestif
 
 services:
-  api:
+  digestif:
     image: digestif
     build: .
     deploy:
