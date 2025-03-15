@@ -6,6 +6,7 @@ services:
     build: .
     pull_policy: build
     environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
       - FEEDS_PATH=/feeds
       - OUTPUT_PATH=/outputs
     deploy:
