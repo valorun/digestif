@@ -1,5 +1,8 @@
 FROM python:3
 
+ENV FEEDS_PATH=/feeds
+ENV OUTPUT_PATH=/outputs
+
 RUN mkdir -p /feeds
 RUN mkdir -p /outputs
 RUN mkdir -p /opt/app

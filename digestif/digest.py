@@ -9,8 +9,8 @@ from digestif.model import FeedConfig
 from digestif.nlp.llm_processor import LLMProcessor
 from digestif.utils import parse_feed_config
 
-FEEDS_PATH = getenv("FEEDS_PATH", "/feeds")
-OUTPUT_PATH = getenv("OUTPUT_PATH", "/outputs")
+FEEDS_PATH = getenv("FEEDS_PATH", "./feeds")
+OUTPUT_PATH = getenv("OUTPUT_PATH", "./")
 
 
 def get_feeds() -> list[FeedConfig]:

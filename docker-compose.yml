@@ -5,6 +5,9 @@ services:
     image: digestif
     build: .
     pull_policy: build
+    environment:
+      - FEEDS_PATH=/feeds
+      - OUTPUT_PATH=/outputs
     deploy:
       mode: replicated
       replicas: 1
