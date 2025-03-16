@@ -1,28 +1,32 @@
+import time
+from datetime import datetime, timedelta
+
 import feedparser
 import requests
-from datetime import datetime, timedelta
-import time
+
 
 
 def format_article(articles) -> str:
     return f"  <item>\n    <title>{articles.title}</title>\n    <link>{articles.link}</link>\n    <description>{articles.description}</description>\n    <pubDate>{articles.published}</pubDate>\n  </item>"
 
 
-def download_feed(url: str) -> str:
+def download_feed(url) -> feedparser.FeedParserDict:
     raw_data = requests.get(url).text
-    print(raw_data)
     parsed_feed = feedparser.parse(raw_data)
-    articles = parsed_feed.entries
 
     # Get only daily articles
-    articles = [
+    parsed_feed.entries = [
         a
-        for a in articles
+        for a in parsed_feed.entries
         if a.published_parsed
         and isinstance(a.published_parsed, time.struct_time)
-        and datetime(*a.published_parsed[:6])
-        > (datetime.now() - timedelta(days=1))
+        and datetime(*a.published_parsed[:6]) > (datetime.now() - timedelta(days=1))
     ]
+    return parsed_feed
+
+
+def format_feed(parsed_feed: feedparser.FeedParserDict) -> str:
+    articles = parsed_feed.entries
 
     try:
         return (
@@ -32,3 +36,11 @@ def download_feed(url: str) -> str:
         )
     except AttributeError:
         return ""
+
+
+def format_feed_markdown(
+    parsed_feed: feedparser.FeedParserDict,
+) -> str:
+    articles = parsed_feed.entries
+
+    return "\n".join([f"- [{a.title}]({a.link})" for a in articles])
