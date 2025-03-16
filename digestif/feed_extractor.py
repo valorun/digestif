@@ -10,6 +10,7 @@ def format_article(articles) -> str:
 
 def download_feed(url: str) -> str:
     raw_data = requests.get(url).text
+    print(raw_data)
     parsed_feed = feedparser.parse(raw_data)
     articles = parsed_feed.entries
 
@@ -23,9 +24,11 @@ def download_feed(url: str) -> str:
         > (datetime.now() - timedelta(days=1))
     ]
 
-    # print(f"Found {len(articles)} articles")
-    return (
-        f"<channel>\n  <title>{parsed_feed.feed.title}</title>\n"
-        + "\n".join([format_article(a) for a in articles])
-        + "\n</channel>"
-    )
+    try:
+        return (
+            f"<channel>\n  <title>{parsed_feed.feed.title}</title>\n"
+            + "\n".join([format_article(a) for a in articles])
+            + "\n</channel>"
+        )
+    except AttributeError:
+        return ""

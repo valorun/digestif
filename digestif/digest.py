@@ -34,7 +34,7 @@ def create_digest() -> str:
 
             base_digest += LLMProcessor(openai_client, f.prompt)(feed_content) + "\n\n"
             print(base_digest)
-            sleep(5)
+            sleep(15)
         merged_feed_digest = LLMProcessor(
             openai_client,
             "Your role is to merge provided digests. You need to keep the same common structure.",
